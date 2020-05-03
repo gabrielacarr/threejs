@@ -2,8 +2,7 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <title>My first three.js app</title>
+    <title>Hello ThreeJS</title>
     <style>
         body {
             margin: 0;
@@ -17,23 +16,35 @@
 
 <body>
     <script src="js/three.js"></script>
-
     <script>
-
+        // CREATING THE SCENE
         var scene = new THREE.Scene();
         var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
         var renderer = new THREE.WebGLRenderer();
         renderer.setSize(window.innerWidth, window.innerHeight);
         document.body.appendChild(renderer.domElement);
+
+        var geometry = new THREE.BoxGeometry();
+        var material = new THREE.MeshBasicMaterial({ color: 0x00ff00 });
+        var cube = new THREE.Mesh(geometry, material);
+        scene.add(cube);
+
+        camera.position.z = 5;
+
+        // RENDERING THE SCENE
+        var animate = function () {
+            requestAnimationFrame(animate);
+            // ANIMATING THE CUBE
+            cube.rotation.x += 0.01;
+            cube.rotation.y += 0.01;
+
+            renderer.render(scene, camera);
+        };
+
+        animate();
     </script>
-    // SCENE, CAMERA, AND RENDERER SET UP
-    // PerspectiveCamera, FOV, VALUE IN DEGREES
-    // ASPECT RATIO, WIDTH OF ELEMENTS DIVIDED HEIGHT, IMG RESULT AS WIDESCREEN
-    // NEAR AND FAR CLIPPING PANE, OBLJECT IS FURTHER AWAY FROM CAMERA THAN VALUE OF FAR OR CLOSER
-    // THAN NEAR WONT BE RENDERED
-    // SET WIDTH AND HEIGHT OF AREA TO FILL APP
- 
+    
 </body>
 
 </html>
